@@ -20,5 +20,9 @@
     "@types/react-dom": "^18",
     "eslint": "^8",
     "eslint-config-next": "15.0.3"
+  },
+  "volta": {
+    "node": "22.11.0",
+    "npm": "10.9.1"
   }
 }
