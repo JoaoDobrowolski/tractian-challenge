@@ -1,0 +1,39 @@
+@import "@styles/config.scss";
+
+@keyframes loader {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loader {
+  animation: 0.5s infinite linear loader;
+  border: 0.25em solid $gray600;
+  border-left: 0.25em solid $gray200;
+  border-radius: 50%;
+  padding: 0.35em;
+  position: relative;
+  transform: translateZ(0);
+}
+
+// Screen readers only text
+.text {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
