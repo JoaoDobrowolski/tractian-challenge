@@ -1,0 +1,35 @@
+@mixin xs-viewport {
+  @media (width <= 450px) {
+    @content;
+  }
+}
+
+@mixin sm-viewport {
+  @media (width <= 703px) {
+    @content;
+  }
+}
+
+@mixin md-viewport {
+  @media (width <= 1149px) {
+    @content;
+  }
+}
+
+@mixin media($keys...) {
+  @each $key in $keys {
+    @if $key == md-viewport {
+      @include md-viewport {
+        @content;
+      }
+    } @else if $key == sm-viewport {
+      @include sm-viewport {
+        @content;
+      }
+    } @else if $key == xs-viewport {
+      @include xs-viewport {
+        @content;
+      }
+    }
+  }
+}

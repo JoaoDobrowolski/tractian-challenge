@@ -1,0 +1,65 @@
+$font-family-base: "Roboto", "sans-serif";
+$font-family-secondary: "inter";
+
+// Font weights
+$normal: 400;
+$medium: 500;
+$semi-bold: 600;
+$bold: 700;
+
+// Mixins
+@mixin body-regular-400 {
+  font-family: $font-family-base;
+  font-weight: $normal;
+  font-size: 1.4rem;
+  line-height: 2.2rem;
+}
+
+@mixin medium-sm-600 {
+  font-family: $font-family-secondary;
+  font-weight: $semi-bold;
+  font-size: 1.4rem;
+  line-height: 2rem;
+}
+
+@mixin regular-md-400 {
+  font-family: $font-family-secondary;
+  font-weight: $normal;
+  font-size: 1.6rem;
+  line-height: 2.4rem;
+}
+
+@mixin regular-sm-400 {
+  font-family: $font-family-secondary;
+  font-weight: $normal;
+  font-size: 1.4rem;
+  line-height: 2rem;
+}
+
+@mixin semibold-xl-600 {
+  font-family: $font-family-secondary;
+  font-weight: $semi-bold;
+  font-size: 2rem;
+  line-height: 2.8rem;
+}
+
+@mixin semibold-lg-600 {
+  font-family: $font-family-secondary;
+  font-weight: $semi-bold;
+  font-size: 1.8rem;
+  line-height: 2.8rem;
+}
+
+@mixin semibold-md-600 {
+  font-family: $font-family-secondary;
+  font-weight: $semi-bold;
+  font-size: 1.6rem;
+  line-height: 2.4rem;
+}
+
+@mixin semibold-xs-600 {
+  font-family: $font-family-secondary;
+  font-weight: $semi-bold;
+  font-size: 1.2rem;
+  line-height: 1.6rem;
+}
