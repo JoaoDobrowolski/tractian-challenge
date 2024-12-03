@@ -1,11 +1,10 @@
-import { Bolt, CodePen } from "@assets/icons";
-import styles from "./styles.module.scss";
+import Header from "@components/header";
+// import styles from "./styles.module.scss";
 
 export default function Home() {
   return (
-    <div className={styles.test}>
-      <Bolt />
-      <CodePen />
+    <div>
+      <Header />
     </div>
   );
 }

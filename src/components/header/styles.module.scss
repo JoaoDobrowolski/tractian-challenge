@@ -1,0 +1,15 @@
+@import "@styles/config.scss";
+
+.header {
+  background-color: $highest;
+  height: 48px;
+  display: flex;
+  justify-content: space-between;
+
+  .logo {
+    color: $lowest;
+    width: 104px;
+    height: 14px;
+    margin: 16px;
+  }
+}
