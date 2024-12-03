@@ -1,0 +1,36 @@
+@import "@styles/config.scss";
+
+.segmentedGroup {
+  display: flex;
+  gap: 10px;
+}
+
+.button {
+  @include semibold-xs-600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 8px;
+  border-radius: 2px;
+  background-color: $blue900;
+  cursor: pointer;
+  color: $lowest;
+  transition:
+    background-color 0.3s,
+    color 0.3s;
+
+  &:hover {
+    background-color: $low;
+    color: $highest;
+  }
+
+  .icon {
+    display: flex;
+    align-items: center;
+  }
+}
+
+.active {
+  background-color: $blue500;
+  border-color: #0070f3;
+}
