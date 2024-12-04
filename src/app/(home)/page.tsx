@@ -7,14 +7,17 @@ import SpinLoader from '@components/spin-loader';
 import { useCompanies } from '@hooks/useCompanies';
 import { useLocations } from '@hooks/useLocations';
 import { useAssets } from '@hooks/useAssets';
+import { TreeNodeComponent } from '@components/tree-node-component';
 
 import styles from './styles.module.scss';
-import { TreeNodeComponent } from '@components/tree-node-component';
+import Filter from '@components/filter';
+import { Lightning, Warning } from '@assets/icons';
 
 export default function Home() {
   const [selectedCompanyId, setSelectedCompanyId] = useState<string>('');
   const [tree, setTree] = useState<TreeNode[]>([]);
   const [searchTerm, setSearchTerm] = useState('');
+  const [selectedFilters, setSelectedFilters] = useState<string[]>([]);
 
   const { data: companiesData } = useCompanies();
   const { data: locationsData } = useLocations(selectedCompanyId);
@@ -56,9 +59,20 @@ export default function Home() {
                   </h2>
                 </div>
                 <div className={styles.filters}>
-                  {/* TODO: Buttons for filters */}
-                  <button>Sensor de Energia</button>
-                  <button>Crítico</button>
+                  <Filter
+                    id="energy"
+                    name="Sensor de Energia"
+                    selectedFilters={selectedFilters}
+                    setSelectedFilters={setSelectedFilters}
+                    icon={<Lightning />}
+                  />
+                  <Filter
+                    id="critical"
+                    name="Crítico"
+                    selectedFilters={selectedFilters}
+                    setSelectedFilters={setSelectedFilters}
+                    icon={<Warning />}
+                  />
                 </div>
               </div>
               <div className={styles.tree}>

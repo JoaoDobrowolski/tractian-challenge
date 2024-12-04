@@ -12,16 +12,27 @@
     border-radius: 4px;
     border: 1px solid $gray200;
 
-    .horizontal-wrapper {
+    .unit-filters {
       display: flex;
+      justify-content: space-between;
       align-items: center;
-      .title {
-        @include semibold-xl-600;
+
+      .horizontal-wrapper {
+        display: flex;
+        align-items: center;
+        .title {
+          @include semibold-xl-600;
+        }
+
+        .unit {
+          @include regular-sm-400;
+          color: $gray600;
+        }
       }
 
-      .unit {
-        @include regular-sm-400;
-        color: $gray600;
+      .filters {
+        display: flex;
+        gap: 8px;
       }
     }
 

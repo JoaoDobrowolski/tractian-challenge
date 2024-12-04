@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction } from 'react';
+import { Dispatch, ReactNode, SetStateAction } from 'react';
 import classNames from 'classnames';
 import styles from './styles.module.scss';
 
@@ -11,7 +11,7 @@ type SegmentedGroupProps = {
   elements: Element[];
   selectedId: string;
   setSelectedId: Dispatch<SetStateAction<string>>;
-  icon?: React.ReactNode;
+  icon?: ReactNode;
 };
 
 const SegmentedGroup = ({ elements, selectedId, setSelectedId, icon }: SegmentedGroupProps) => {
