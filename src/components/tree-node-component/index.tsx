@@ -1,5 +1,5 @@
 import { TreeNode } from '@app/utils/tree';
-import { CodePen, Cube, Location } from '@assets/icons';
+import { Bolt, Circle, CodePen, Cube, Location } from '@assets/icons';
 
 import styles from './styles.module.scss';
 
@@ -8,7 +8,7 @@ type TreeNodeProps = {
 };
 
 export const TreeNodeComponent = ({ node }: TreeNodeProps) => {
-  const getIcon = () => {
+  const getLeftIcon = () => {
     switch (node.type) {
       case 'location':
         return <Location className={styles.icon} />;
@@ -21,11 +21,21 @@ export const TreeNodeComponent = ({ node }: TreeNodeProps) => {
     }
   };
 
+  const getComponentIcon = () => {
+    if (node.type === 'component') {
+      const icon = node.sensorType === 'energy' ? <Bolt /> : <Circle />;
+      const color = node.status === 'alert' ? styles.red : styles.green;
+      return <span className={`${styles.icon} ${color}`}>{icon}</span>;
+    }
+    return null;
+  };
+
   return (
     <div className={styles.node}>
       <div className={styles.nodeContent}>
-        {getIcon()}
-        <span>{node.name}</span>
+        {getLeftIcon()}
+        <span className={styles.name}>{node.name}</span>
+        {getComponentIcon()}
       </div>
       {/* Render children recursively */}
       {node.children.length > 0 && (

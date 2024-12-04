@@ -11,7 +11,7 @@ import { TreeNodeComponent } from '@components/tree-node-component';
 
 import styles from './styles.module.scss';
 import Filter from '@components/filter';
-import { Lightning, Warning } from '@assets/icons';
+import { Lightning, Search, Warning } from '@assets/icons';
 
 export default function Home() {
   const [selectedCompanyId, setSelectedCompanyId] = useState<string>('');
@@ -58,6 +58,7 @@ export default function Home() {
                     } Unit`}
                   </h2>
                 </div>
+                {/* TODO: Filters logic */}
                 <div className={styles.filters}>
                   <Filter
                     id="energy"
@@ -75,18 +76,23 @@ export default function Home() {
                   />
                 </div>
               </div>
-              <div className={styles.tree}>
-                {/* TODO: Search input */}
-                <input
-                  type="text"
-                  placeholder="Buscar Ativo ou Local"
-                  value={searchTerm}
-                  onChange={handleSearchChange}
-                />
-                {/* TODO: add icons and components as buttons and assets and locations as collapsible if have child */}
-                {tree.map(node => (
-                  <TreeNodeComponent key={node.id} node={node} />
-                ))}
+              <div className={styles['tree-container']}>
+                {/* TODO: Search input logic */}
+                <div className={styles['search-container']}>
+                  <input
+                    type="text"
+                    placeholder="Buscar Ativo ou Local"
+                    value={searchTerm}
+                    onChange={handleSearchChange}
+                    className={styles.search}
+                  />
+                  <Search className={styles['search-icon']} />
+                </div>
+                <div className={styles.tree}>
+                  {tree.map(node => (
+                    <TreeNodeComponent key={node.id} node={node} />
+                  ))}
+                </div>
               </div>
             </>
           ) : (

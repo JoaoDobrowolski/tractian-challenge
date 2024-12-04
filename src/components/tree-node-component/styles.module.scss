@@ -1,13 +1,10 @@
 @import '@styles/config.scss';
 
-.node {
-  margin-bottom: 8px;
-}
-
 .nodeContent {
   display: flex;
   align-items: center;
-  gap: 8px; // Space between the icon and the name
+  gap: 4px;
+  margin-bottom: 4px;
 }
 
 .icon {
@@ -16,6 +13,18 @@
   color: $blue500;
 }
 
+.red {
+  color: $red;
+}
+
+.green {
+  color: $green;
+}
+
 .children {
   margin-left: 20px;
+}
+
+.name {
+  @include body-regular-400;
 }
