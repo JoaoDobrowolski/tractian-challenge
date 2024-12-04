@@ -1,6 +1,6 @@
-import React, { Dispatch, SetStateAction } from "react";
-import classNames from "classnames";
-import styles from "./styles.module.scss";
+import React, { Dispatch, SetStateAction } from 'react';
+import classNames from 'classnames';
+import styles from './styles.module.scss';
 
 type Element = {
   id: string;
@@ -14,19 +14,14 @@ type SegmentedGroupProps = {
   icon?: React.ReactNode;
 };
 
-const SegmentedGroup = ({
-  elements,
-  selectedId,
-  setSelectedId,
-  icon,
-}: SegmentedGroupProps) => {
+const SegmentedGroup = ({ elements, selectedId, setSelectedId, icon }: SegmentedGroupProps) => {
   const handleButtonClick = (id: string) => {
     setSelectedId(id);
   };
 
   return (
     <div className={styles.segmentedGroup}>
-      {elements.map((element) => (
+      {elements.map(element => (
         <button
           key={element.id}
           className={classNames(styles.button, {
@@ -35,7 +30,7 @@ const SegmentedGroup = ({
           onClick={() => handleButtonClick(element.id)}
         >
           {icon && <span className={styles.icon}>{icon}</span>}
-          {element.name}
+          {`${element.name} Unit`}
         </button>
       ))}
     </div>

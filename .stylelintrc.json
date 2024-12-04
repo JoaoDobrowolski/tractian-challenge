@@ -1,0 +1,44 @@
+{
+  "ignoreFiles": ["node_modules/**/*", "dist/**/*", "out/**/*"],
+  "overrides": [
+    {
+      "files": ["**/*.css"],
+      "extends": ["stylelint-config-standard"],
+      "rules": {}
+    },
+    {
+      "files": ["**/*.scss"],
+      "extends": ["stylelint-config-standard-scss"],
+      "rules": {
+        "scss/at-import-partial-extension": "always",
+        "scss/at-import-partial-extension-whitelist": ["scss"],
+        "scss/at-mixin-pattern": "^[a-z#{$}]+([a-z0-9-#{$}]+[a-z0-9#{$}]+)?$",
+        "selector-class-pattern": [
+          "^[a-zA-Z][a-z0-9-]+$",
+          {
+            "message": "Selector should be written in kebab-case or Title-kebab-case (selector-class-pattern)"
+          }
+        ],
+        "selector-id-pattern": [
+          "^[a-zA-Z][a-z0-9-]+$",
+          {
+            "message": "Selector should be written in kebab-case or Title-kebab-case (selector-class-pattern)"
+          }
+        ],
+        "no-descending-specificity": null,
+        "selector-pseudo-class-no-unknown": [
+          true,
+          {
+            "ignorePseudoClasses": ["global", "export"]
+          }
+        ],
+        "property-no-unknown": [
+          true,
+          {
+            "ignoreSelectors": [":export"]
+          }
+        ]
+      }
+    }
+  ]
+}
