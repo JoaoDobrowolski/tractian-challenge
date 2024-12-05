@@ -1,4 +1,4 @@
-Tree View Application
+## Tree View Application
 
 This project is part of a technical challenge to build a tree view application that visualizes companies' assets, components, and locations. The application provides filtering options for energy sensors and critical components and includes a search functionality to find any node while maintaining the hierarchy.
 
