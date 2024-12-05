@@ -1,26 +1,30 @@
-Asset Tree Application
+Tree View Application
+
 This project is part of a technical challenge to build a tree view application that visualizes companies' assets, components, and locations. The application provides filtering options for energy sensors and critical components and includes a search functionality to find any node while maintaining the hierarchy.
 
 Video Demonstration
+
 A video showcasing the application's features, including switching companies and applying filters, is included as required.
 
 Development Timeline
+
 I worked on this project over four days, dedicating a few hours each day. If I had worked full-time (8 hours a day), I estimate the completion time would have been 2-3 days.
 
-Day 1
-Initial project setup.
-Installed and configured the necessary tools and libraries.
-Day 2
-Integrated the API endpoints.
-Implemented the header component to display company information.
-Day 3
-Started building the tree structure with assets, components, and locations.
-Implemented basic filters for energy sensors and critical components.
-Day 4
-Finalized the tree and filter logic.
-Developed the component container to display detailed information about the selected component.
+- Day 1 -
+  Initial project setup.
+  Installed and configured the necessary tools and libraries.
+- Day 2 -
+  Integrated the API endpoints.
+  Implemented the header component to display company information.
+- Day 3 -
+  Started building the tree structure with assets, components, and locations.
+  Implemented basic filters for energy sensors and critical components.
+- Day 4 -
+  Finalized the tree and filter logic.
+  Developed the component container to display detailed information about the selected component.
 
 Potential Improvements
+
 Given more time, I would focus on the following improvements:
 
 1. Eliminate Prop Drilling
