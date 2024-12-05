@@ -1,0 +1,41 @@
+@import '@styles/config.scss';
+
+.filter {
+  @include medium-sm-600;
+  color: $gray600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border: 1px solid $gray200;
+  border-radius: 4px;
+  background-color: $lowest;
+  cursor: pointer;
+  transition:
+    background-color 0.3s,
+    color 0.3s;
+
+  &:hover {
+    background-color: $low;
+    color: $highest;
+  }
+}
+
+.selected {
+  background-color: $blue500;
+  color: $lowest;
+  border-color: $blue500;
+
+  & .icon {
+    color: $lowest;
+  }
+}
+
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  color: $blue500;
+}

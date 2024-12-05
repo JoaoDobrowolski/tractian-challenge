@@ -1,0 +1,20 @@
+@import "reset.scss";
+@import "config.scss";
+
+/*
+* BASIC SETUP
+*/
+:global(#root) {
+  min-height: inherit;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  @include body-regular-400;
+  font-family: $font-family-base;
+  min-height: 100vh;
+  color: $highest;
+}

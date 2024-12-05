@@ -1,0 +1,21 @@
+@import "@styles/config.scss";
+
+.header {
+  background-color: $highest;
+  height: 48px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .logo {
+    color: $lowest;
+    width: 104px;
+    height: 14px;
+    margin: 16px;
+  }
+
+  .companies {
+    margin: 12px 16px;
+    color: $lowest;
+  }
+}

@@ -1,0 +1,63 @@
+@import '@styles/config.scss';
+
+.nodeContent {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-bottom: 4px;
+  padding-left: 20px;
+  position: relative;
+}
+
+.treeSwitcher {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &.collapsed {
+    transform: translateY(-50%) rotate(-90deg);
+  }
+}
+
+.icon {
+  width: 22px;
+  height: 22px;
+  color: $blue500;
+  flex-shrink: 0;
+}
+
+.children {
+  margin-left: 20px;
+}
+
+.name {
+  @include body-regular-400;
+}
+
+.node {
+  &.clickable {
+    cursor: pointer;
+  }
+
+  &.selected {
+    background-color: $blue500;
+    color: $lowest;
+
+    & .icon {
+      color: $lowest;
+    }
+  }
+}
+
+.red {
+  color: $red;
+}
+
+.green {
+  color: $green;
+}

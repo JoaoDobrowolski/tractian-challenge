@@ -1,0 +1,95 @@
+@import '@styles/config.scss';
+
+.main {
+  background-color: $gray100;
+  height: calc(100vh - 48px);
+  padding: 8px;
+  overflow-y: auto;
+
+  .container {
+    background-color: $lowest;
+    padding: 16px;
+    min-height: 100%;
+    height: auto;
+    border-radius: 4px;
+    border: 1px solid $gray200;
+
+    .unit-filters {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+
+      .horizontal-wrapper {
+        display: flex;
+        align-items: center;
+        .title {
+          @include semibold-xl-600;
+        }
+
+        .unit {
+          @include regular-sm-400;
+          color: $gray600;
+        }
+      }
+
+      .filters {
+        display: flex;
+        gap: 8px;
+      }
+    }
+
+    .main-container {
+      display: flex;
+      gap: 8px;
+
+      @include md-viewport {
+        flex-direction: column;
+      }
+
+      .tree-container {
+        border: 1px solid $gray200;
+        border-radius: 2px;
+        width: fit-content;
+        min-width: 400px;
+
+        .search-container {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          border-bottom: 1px solid $gray200;
+
+          .search {
+            @include regular-sm-400;
+            width: 100%;
+            padding: 8px;
+            color: $title;
+          }
+
+          .search-icon {
+            color: $title;
+            margin: 0 20px;
+          }
+        }
+
+        .tree {
+          padding: 4px;
+        }
+      }
+
+      .component-container {
+        display: flex;
+        border: 1px solid $gray200;
+        border-radius: 2px;
+        width: 100%;
+      }
+    }
+
+    .loader-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+    }
+  }
+}
