@@ -18,6 +18,7 @@ export default function Home() {
   const [searchTerm, setSearchTerm] = useState('');
   const [filteredTree, setFilteredTree] = useState<TreeNode[]>([]);
   const [selectedFilters, setSelectedFilters] = useState<string[]>([]);
+  const [selectedComponent, setSelectedComponent] = useState<TreeNode | null>(null);
 
   const { data: companiesData } = useCompanies();
   const { data: locationsData } = useLocations(selectedCompanyId);
@@ -137,7 +138,12 @@ export default function Home() {
                 </div>
                 <div className={styles.tree}>
                   {filteredTree.map(node => (
-                    <TreeNodeComponent key={node.id} node={node} />
+                    <TreeNodeComponent
+                      key={node.id}
+                      node={node}
+                      selectedComponent={selectedComponent}
+                      setSelectedComponent={setSelectedComponent}
+                    />
                   ))}
                 </div>
               </div>

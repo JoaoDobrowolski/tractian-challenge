@@ -31,18 +31,33 @@
   flex-shrink: 0;
 }
 
-.red {
-  color: $red;
-}
-
-.green {
-  color: $green;
-}
-
 .children {
   margin-left: 20px;
 }
 
 .name {
   @include body-regular-400;
+}
+
+.node {
+  &.clickable {
+    cursor: pointer;
+  }
+
+  &.selected {
+    background-color: $blue500;
+    color: $lowest;
+
+    & .icon {
+      color: $lowest;
+    }
+  }
+}
+
+.red {
+  color: $red;
+}
+
+.green {
+  color: $green;
 }

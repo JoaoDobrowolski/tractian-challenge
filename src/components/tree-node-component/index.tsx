@@ -2,12 +2,20 @@ import { useState } from 'react';
 import { TreeNode } from '@app/utils/tree';
 import { Bolt, Circle, CodePen, Cube, Location, TreeSwitcher } from '@assets/icons';
 import styles from './styles.module.scss';
+import classNames from 'classnames';
 
 type TreeNodeProps = {
   node: TreeNode;
+  selectedComponent: TreeNode | null;
+  // eslint-disable-next-line no-unused-vars
+  setSelectedComponent: (node: TreeNode) => void;
 };
 
-export const TreeNodeComponent = ({ node }: TreeNodeProps) => {
+export const TreeNodeComponent = ({
+  node,
+  selectedComponent,
+  setSelectedComponent,
+}: TreeNodeProps) => {
   const [isCollapsed, setIsCollapsed] = useState(false);
 
   const getLeftIcon = () => {
@@ -27,7 +35,7 @@ export const TreeNodeComponent = ({ node }: TreeNodeProps) => {
     if (node.type === 'component') {
       const icon = node.sensorType === 'energy' ? <Bolt /> : <Circle />;
       const color = node.status === 'alert' ? styles.red : styles.green;
-      return <span className={`${styles.icon} ${color}`}>{icon}</span>;
+      return <span className={color}>{icon}</span>;
     }
     return null;
   };
@@ -36,8 +44,20 @@ export const TreeNodeComponent = ({ node }: TreeNodeProps) => {
     setIsCollapsed(!isCollapsed);
   };
 
+  const handleClick = () => {
+    if (node.type === 'component') {
+      setSelectedComponent(node);
+    }
+  };
+
   return (
-    <div className={styles.node}>
+    <div
+      className={classNames(styles.node, {
+        [styles.clickable]: node.type === 'component',
+        [styles.selected]: selectedComponent?.id === node.id,
+      })}
+      onClick={handleClick}
+    >
       <div className={styles.nodeContent}>
         {node.children.length > 0 && (
           <button
@@ -55,7 +75,12 @@ export const TreeNodeComponent = ({ node }: TreeNodeProps) => {
       {!isCollapsed && node.children.length > 0 && (
         <div className={styles.children}>
           {node.children.map(child => (
-            <TreeNodeComponent key={child.id} node={child} />
+            <TreeNodeComponent
+              key={child.id}
+              node={child}
+              selectedComponent={selectedComponent}
+              setSelectedComponent={setSelectedComponent}
+            />
           ))}
         </div>
       )}
