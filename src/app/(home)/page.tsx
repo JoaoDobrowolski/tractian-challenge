@@ -8,7 +8,6 @@ import { useCompanies } from '@hooks/useCompanies';
 import { useLocations } from '@hooks/useLocations';
 import { useAssets } from '@hooks/useAssets';
 import { TreeNodeComponent } from '@components/tree-node-component';
-
 import styles from './styles.module.scss';
 import Filter from '@components/filter';
 import { Lightning, Search, Warning } from '@assets/icons';
@@ -24,7 +23,6 @@ export default function Home() {
   const { data: locationsData } = useLocations(selectedCompanyId);
   const { data: assetsData } = useAssets(selectedCompanyId);
 
-  // Process data into tree and map when locations and assets change
   useEffect(() => {
     if (locationsData && assetsData) {
       const { tree } = buildTree(locationsData, assetsData);
@@ -37,42 +35,54 @@ export default function Home() {
     setSearchTerm(event.target.value);
   };
 
-  const filterTree = (tree: TreeNode[], searchTerm: string, filters: string[]): TreeNode[] => {
+  const searchTree = (tree: TreeNode[], searchTerm: string): TreeNode[] => {
+    if (!searchTerm.trim()) return tree;
     return tree
       .map(node => {
-        const hasTerm = node.name.toLowerCase().includes(searchTerm.toLowerCase());
-
-        const matchesFilters =
-          node.type !== 'component' ||
-          ((filters.includes('energy') ? node.sensorType === 'energy' : true) &&
-            (filters.includes('critical') ? node.status === 'alert' : true));
-
-        const filteredChildren = filterTree(node.children, searchTerm, filters);
-
-        if ((hasTerm && matchesFilters) || filteredChildren.length > 0) {
+        const matchesSearch = node.name.toLowerCase().includes(searchTerm.toLowerCase());
+        const filteredChildren = searchTree(node.children, searchTerm);
+        if (matchesSearch || filteredChildren.length > 0) {
           return {
             ...node,
             children: filteredChildren,
           };
         }
-
         return null;
       })
       .filter(node => node !== null) as TreeNode[];
   };
 
-  const onSearch = () => {
-    if (searchTerm.trim() === '' && selectedFilters.length === 0) {
-      return setFilteredTree(tree);
-    }
-    const result = filterTree(tree, searchTerm, selectedFilters);
-    setFilteredTree(result);
+  const filterTree = (tree: TreeNode[], filters: string[]): TreeNode[] => {
+    if (filters.length === 0) return tree;
+    return tree
+      .map(node => {
+        const matchesFilters =
+          node.type !== 'component' ||
+          ((filters.includes('energy') ? node.sensorType === 'energy' : true) &&
+            (filters.includes('critical') ? node.status === 'alert' : true));
+        const filteredChildren = filterTree(node.children, filters);
+        if (matchesFilters || filteredChildren.length > 0) {
+          return {
+            ...node,
+            children: filteredChildren,
+          };
+        }
+        return null;
+      })
+      .filter(node => node !== null) as TreeNode[];
   };
 
   useEffect(() => {
-    onSearch();
+    let result = tree;
+    if (searchTerm.trim()) {
+      result = searchTree(tree, searchTerm);
+    }
+    if (selectedFilters.length > 0) {
+      result = filterTree(result, selectedFilters);
+    }
+    setFilteredTree(result);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selectedFilters]);
+  }, [tree, searchTerm, selectedFilters]);
 
   return (
     <div>
@@ -123,9 +133,7 @@ export default function Home() {
                     onChange={handleSearchChange}
                     className={styles.search}
                   />
-                  <button type="button" onClick={onSearch} className={styles['search-button']}>
-                    <Search className={styles['search-icon']} />
-                  </button>
+                  <Search className={styles['search-icon']} />
                 </div>
                 <div className={styles.tree}>
                   {filteredTree.map(node => (
