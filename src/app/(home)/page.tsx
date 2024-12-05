@@ -37,13 +37,19 @@ export default function Home() {
     setSearchTerm(event.target.value);
   };
 
-  const filterTree = (tree: TreeNode[], searchTerm: string): TreeNode[] => {
+  const filterTree = (tree: TreeNode[], searchTerm: string, filters: string[]): TreeNode[] => {
     return tree
       .map(node => {
         const hasTerm = node.name.toLowerCase().includes(searchTerm.toLowerCase());
-        const filteredChildren = filterTree(node.children, searchTerm);
 
-        if (hasTerm || filteredChildren.length > 0) {
+        const matchesFilters =
+          node.type !== 'component' ||
+          ((filters.includes('energy') ? node.sensorType === 'energy' : true) &&
+            (filters.includes('critical') ? node.status === 'alert' : true));
+
+        const filteredChildren = filterTree(node.children, searchTerm, filters);
+
+        if ((hasTerm && matchesFilters) || filteredChildren.length > 0) {
           return {
             ...node,
             children: filteredChildren,
@@ -55,12 +61,21 @@ export default function Home() {
   };
 
   const onSearch = () => {
-    if (searchTerm.trim() === '') {
+    if (searchTerm.trim() === '' && selectedFilters.length === 0) {
+      return setFilteredTree(tree);
+    }
+    const result = filterTree(tree, searchTerm, selectedFilters);
+    setFilteredTree(result);
+  };
+
+  useEffect(() => {
+    if (searchTerm.trim() === '' && selectedFilters.length === 0) {
       setFilteredTree(tree);
     } else {
-      setFilteredTree(filterTree(tree, searchTerm));
+      setFilteredTree(filterTree(tree, searchTerm, selectedFilters));
     }
-  };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [tree, searchTerm, selectedFilters]);
 
   return (
     <div>
@@ -85,7 +100,6 @@ export default function Home() {
                     } Unit`}
                   </h2>
                 </div>
-                {/* TODO: Filters logic */}
                 <div className={styles.filters}>
                   <Filter
                     id="energy"
