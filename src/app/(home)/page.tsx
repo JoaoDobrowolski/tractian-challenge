@@ -55,6 +55,7 @@ export default function Home() {
             children: filteredChildren,
           };
         }
+
         return null;
       })
       .filter(node => node !== null) as TreeNode[];
@@ -69,13 +70,9 @@ export default function Home() {
   };
 
   useEffect(() => {
-    if (searchTerm.trim() === '' && selectedFilters.length === 0) {
-      setFilteredTree(tree);
-    } else {
-      setFilteredTree(filterTree(tree, searchTerm, selectedFilters));
-    }
+    onSearch();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [tree, searchTerm, selectedFilters]);
+  }, [selectedFilters]);
 
   return (
     <div>
