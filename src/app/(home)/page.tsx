@@ -17,6 +17,7 @@ export default function Home() {
   const [selectedCompanyId, setSelectedCompanyId] = useState<string>('');
   const [tree, setTree] = useState<TreeNode[]>([]);
   const [searchTerm, setSearchTerm] = useState('');
+  const [filteredTree, setFilteredTree] = useState<TreeNode[]>([]);
   const [selectedFilters, setSelectedFilters] = useState<string[]>([]);
 
   const { data: companiesData } = useCompanies();
@@ -28,11 +29,37 @@ export default function Home() {
     if (locationsData && assetsData) {
       const { tree } = buildTree(locationsData, assetsData);
       setTree(tree);
+      setFilteredTree(tree);
     }
   }, [locationsData, assetsData]);
 
   const handleSearchChange = (event: ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(event.target.value);
+  };
+
+  const filterTree = (tree: TreeNode[], searchTerm: string): TreeNode[] => {
+    return tree
+      .map(node => {
+        const hasTerm = node.name.toLowerCase().includes(searchTerm.toLowerCase());
+        const filteredChildren = filterTree(node.children, searchTerm);
+
+        if (hasTerm || filteredChildren.length > 0) {
+          return {
+            ...node,
+            children: filteredChildren,
+          };
+        }
+        return null;
+      })
+      .filter(node => node !== null) as TreeNode[];
+  };
+
+  const onSearch = () => {
+    if (searchTerm.trim() === '') {
+      setFilteredTree(tree);
+    } else {
+      setFilteredTree(filterTree(tree, searchTerm));
+    }
   };
 
   return (
@@ -77,7 +104,6 @@ export default function Home() {
                 </div>
               </div>
               <div className={styles['tree-container']}>
-                {/* TODO: Search input logic */}
                 <div className={styles['search-container']}>
                   <input
                     type="text"
@@ -86,10 +112,12 @@ export default function Home() {
                     onChange={handleSearchChange}
                     className={styles.search}
                   />
-                  <Search className={styles['search-icon']} />
+                  <button type="button" onClick={onSearch} className={styles['search-button']}>
+                    <Search className={styles['search-icon']} />
+                  </button>
                 </div>
                 <div className={styles.tree}>
-                  {tree.map(node => (
+                  {filteredTree.map(node => (
                     <TreeNodeComponent key={node.id} node={node} />
                   ))}
                 </div>
