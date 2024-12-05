@@ -6,7 +6,7 @@ This project is part of a technical challenge to build a tree view application t
 
 A video showcasing the application's features, including switching companies and applying filters, is included as required.
 
-Development Timeline
+### Development Timeline
 
 I worked on this project over four days, dedicating a few hours each day. If I had worked full-time (8 hours a day), I estimate the completion time would have been 2-3 days.
 
@@ -23,7 +23,7 @@ I worked on this project over four days, dedicating a few hours each day. If I h
   Finalized the tree and filter logic.
   Developed the component container to display detailed information about the selected component.
 
-Potential Improvements
+### Potential Improvements
 
 Given more time, I would focus on the following improvements:
 
@@ -36,7 +36,7 @@ Given more time, I would focus on the following improvements:
 3. Enhanced Responsiveness
    Further improve responsiveness by incorporating fluid font sizes and refining styles for smaller screens. Additionally, reduce class names to optimize CSS.
 
-Features
+### Features
 
 - Tree View: Visualizes locations, assets, and components in a hierarchical structure.
 - Filters: Allows users to filter nodes by energy sensors or critical status.
