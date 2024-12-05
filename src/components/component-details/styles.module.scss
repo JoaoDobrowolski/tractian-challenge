@@ -1,0 +1,106 @@
+@import '@styles/config.scss';
+
+.content {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  .title-section {
+    @include semibold-lg-600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 16px;
+    width: 100%;
+    border-bottom: 1px solid $gray200;
+
+    .red {
+      color: $red;
+    }
+
+    .green {
+      color: $green;
+    }
+  }
+
+  .content-section {
+    padding: 24px;
+
+    .statement {
+      @include semibold-md-600;
+      color: $gray950;
+    }
+
+    .info {
+      @include regular-md-400;
+      color: $gray500;
+    }
+
+    .icon {
+      color: $blue500;
+    }
+
+    .main-section {
+      width: 100%;
+      border-bottom: 1px solid $gray200;
+      padding-bottom: 24px;
+      display: flex;
+      gap: 24px;
+      align-items: center;
+
+      @include sm-viewport {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .image-container {
+        @include regular-sm-400;
+        min-width: 336px;
+        height: 226px;
+        border-radius: 4px;
+        border: 1px $blue400 dashed;
+        background-color: $blue50;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        color: $blue400;
+      }
+
+      .side-info-container {
+        width: 100%;
+      }
+    }
+
+    .sensor-section {
+      width: 100%;
+      padding: 24px 0;
+    }
+  }
+
+  .spacing {
+    padding-right: 260px;
+
+    @include sm-viewport {
+      padding-right: 100px;
+    }
+  }
+
+  .horizontal-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .vertical-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .border {
+    border-bottom: 1px solid $gray200;
+    padding-bottom: 24px;
+    margin-bottom: 24px;
+  }
+}

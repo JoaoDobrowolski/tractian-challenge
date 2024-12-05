@@ -3,6 +3,7 @@ export { default as Circle } from './circle.svg';
 export { default as CodePen } from './codepen.svg';
 export { default as Cube } from './cube.svg';
 export { default as Gold } from './gold.svg';
+export { default as Inbox } from './inbox.svg';
 export { default as Lightning } from './lightning.svg';
 export { default as Location } from './location.svg';
 export { default as Logo } from './logo.svg';

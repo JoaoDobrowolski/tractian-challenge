@@ -6,6 +6,7 @@ export type TreeNode = {
   sensorType?: string | null;
   status?: string | null;
   parentId?: string | null;
+  sensorId?: string | undefined;
 };
 
 export const buildTree = (
@@ -17,6 +18,7 @@ export const buildTree = (
     parentId: string | null;
     sensorType?: string | null;
     status?: string | null;
+    sensorId?: string | undefined;
   }[]
 ): { tree: TreeNode[]; map: Record<string, TreeNode> } => {
   const map: Record<string, TreeNode> = {};
@@ -42,6 +44,7 @@ export const buildTree = (
       children: [],
       sensorType: asset.sensorType || null,
       status: asset.status || null,
+      sensorId: asset.sensorId || undefined,
     };
   });
 

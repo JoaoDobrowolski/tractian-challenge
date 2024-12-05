@@ -1,5 +1,5 @@
 @mixin xs-viewport {
-  @media (width <= 450px) {
+  @media (width <= 300px) {
     @content;
   }
 }
@@ -11,7 +11,7 @@
 }
 
 @mixin md-viewport {
-  @media (width <= 1149px) {
+  @media (width <= 1050px) {
     @content;
   }
 }

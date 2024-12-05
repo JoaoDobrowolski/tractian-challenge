@@ -11,6 +11,7 @@ import { TreeNodeComponent } from '@components/tree-node-component';
 import styles from './styles.module.scss';
 import Filter from '@components/filter';
 import { Lightning, Search, Warning } from '@assets/icons';
+import ComponentDetails from '@components/component-details/indx';
 
 export default function Home() {
   const [selectedCompanyId, setSelectedCompanyId] = useState<string>('');
@@ -125,27 +126,34 @@ export default function Home() {
                   />
                 </div>
               </div>
-              <div className={styles['tree-container']}>
-                <div className={styles['search-container']}>
-                  <input
-                    type="text"
-                    placeholder="Buscar Ativo ou Local"
-                    value={searchTerm}
-                    onChange={handleSearchChange}
-                    className={styles.search}
-                  />
-                  <Search className={styles['search-icon']} />
-                </div>
-                <div className={styles.tree}>
-                  {filteredTree.map(node => (
-                    <TreeNodeComponent
-                      key={node.id}
-                      node={node}
-                      selectedComponent={selectedComponent}
-                      setSelectedComponent={setSelectedComponent}
+              <div className={styles['main-container']}>
+                <section className={styles['tree-container']}>
+                  <div className={styles['search-container']}>
+                    <input
+                      type="text"
+                      placeholder="Buscar Ativo ou Local"
+                      value={searchTerm}
+                      onChange={handleSearchChange}
+                      className={styles.search}
                     />
-                  ))}
-                </div>
+                    <Search className={styles['search-icon']} />
+                  </div>
+                  <div className={styles.tree}>
+                    {filteredTree.map(node => (
+                      <TreeNodeComponent
+                        key={node.id}
+                        node={node}
+                        selectedComponent={selectedComponent}
+                        setSelectedComponent={setSelectedComponent}
+                      />
+                    ))}
+                  </div>
+                </section>
+                {selectedComponent && (
+                  <section className={styles['component-container']}>
+                    <ComponentDetails details={selectedComponent} />
+                  </section>
+                )}
               </div>
             </>
           ) : (
