@@ -6,6 +6,8 @@ This project is part of a technical challenge to build a tree view application t
 
 A video showcasing the application's features, including switching companies and applying filters, is included as required.
 
+https://youtu.be/ZL--BOvMX6M
+
 ### Development Timeline
 
 I worked on this project over four days, dedicating a few hours each day. If I had worked full-time (8 hours a day), I estimate the completion time would have been 2-3 days.
